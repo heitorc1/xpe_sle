@@ -368,7 +368,23 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 <!-- CTA -->
 <section class="text-gray-600 body-font" id="cta">
-  <div class="container px-5 py-24 mx-auto">
+  <div class="container px-5 py-24 mx-auto"
+    x-data="{ 
+      isOpen: false, 
+      highlightedIndex: null, 
+      selectedOption: null, 
+      options: [
+        { label: 'Belo Horizonte - Funcionários', value: 1, href: 'https://docs.google.com/forms/d/e/1FAIpQLSf4bq2FjyAhP4geBbPB4NyrDc7z_eQym9QJ45JVzu6W-KcJrA/viewform' },
+        { label: 'Belo Horizonte - Cidade Nova', value: 2, href: 'https://wa.me/553134829850?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20me%20matricular%20no%20Col%C3%A9gio%20Logos%C3%B3fico' },
+        { label: 'Brasília', value: 3, href: 'https://wa.me/556133264205?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20me%20matricular%20no%20Col%C3%A9gio%20Logos%C3%B3fico' },
+        { label: 'Chapecó', value: 4, href: 'https://wa.me/554933233847?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20me%20matricular%20no%20Col%C3%A9gio%20Logos%C3%B3fico' },
+        { label: 'Florianópolis', value: 5, href: 'https://wa.me/554832047932?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20me%20matricular%20no%20Col%C3%A9gio%20Logos%C3%B3fico' },
+        { label: 'Goiânia', value: 6, href: 'https://matriculaonline.escolarmanageronline.com.br/colegiologosofico/Autenticacao/Login?ReturnUrl=%2Fcolegiologosofico' },
+        { label: 'Rio de Janeiro', value: 7, href: 'https://wa.me/5521993194178?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20me%20matricular%20no%20Col%C3%A9gio%20Logos%C3%B3fico' },
+        { label: 'Uberlândia', value: 8, href: 'https://wa.me/5534997811130?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20me%20matricular%20no%20Col%C3%A9gio%20Logos%C3%B3fico' },
+      ],
+      placeholder: 'Selecione sua unidade'
+    }">
     <div class="flex flex-col text-center w-full mb-12">
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
         Dê o Primeiro Passo para uma Educação Transformadora!
@@ -379,39 +395,38 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </p>
     </div>
     <div class="flex flex-col w-full justify-center items-center">
-      <div class="w-full md:w-1/2"
-        x-data="{ isOpen: false, highlightedIndex: null, selectedOption: null, options: ['Option 1', 'Option 2', 'Option 3'], placeholder: 'Selecione sua unidade' }">
+      <div class="w-full md:w-1/2">
         <div class="relative mt-2" @click="isOpen = !isOpen">
           <button type="button"
             class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
             aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
             <span class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
-              <span class="block truncate" x-text="selectedOption || placeholder"></span>
+              <span class="block truncate" x-text="selectedOption ? options.find(option => option.value === selectedOption.value).label : placeholder"></span>
             </span>
 
-            <ul x-show="isOpen" @click.away="isOpen = false" x-transition:enter="transition ease-out duration-100"
-              x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-              x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100"
-              x-transition:leave-end="opacity-0"
+            <ul x-show="isOpen" @click.away="isOpen = false" x-transition
               class="absolute z-10 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base ring-1 shadow-lg ring-black/5 focus:outline-hidden sm:text-sm"
               tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3"
               style="top: 100%; left: 0;">
 
-              <template x-for="(option, index) in options" :key="index">
-                <li class="relative cursor-default py-2 pr-9 pl-3 text-gray-900 select-none" id="listbox-option-0"
-                  role="option" @mouseenter="highlightedIndex = index" @mouseleave="highlightedIndex = null"
-                  @click="selectedOption = option" :class="{
+              <template x-for="(option, index) in options" :key="option.value">
+                <li class="relative cursor-default py-2 pr-9 pl-3 text-gray-900 select-none"
+                  role="option" 
+                  @mouseenter="highlightedIndex = index" 
+                  @mouseleave="highlightedIndex = null"
+                  @click.stop="selectedOption = option; isOpen = false"
+                  :class="{
                     'bg-indigo-600 text-white outline-hidden': highlightedIndex === index,
                     'text-gray-900': highlightedIndex !== index,
-                    'font-semibold': selectedOption === option,
-                    'font-normal': selectedOption !== option
+                    'font-semibold': selectedOption?.value === option.value,
+                    'font-normal': selectedOption?.value !== option.value
                 }">
                   <div class="flex items-center">
-                    <span class="ml-3 block truncate font-normal" x-text="option"></span>
+                    <span class="ml-3 block truncate font-normal" x-text="option.label"></span>
                   </div>
 
                   <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600"
-                    x-show="selectedOption === option" :class="{
+                    x-show="selectedOption?.value === option.value" :class="{
                     'text-white': highlightedIndex === index,
                     'text-indigo-600': highlightedIndex !== index
                 }">
@@ -436,10 +451,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </div>
       </div>
 
-      <button
+      <a :href="selectedOption?.href" target="_blank"
         class="w-fit mt-4 text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg cursor-pointer">
         Avançar para a Matrícula  
-      </button>
+      </a>
     </div>
   </div>
 </section>
