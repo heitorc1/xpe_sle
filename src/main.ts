@@ -7,6 +7,11 @@ import teens from './assets/images/teens-1.jpg'
 import firstFather from './assets/images/father-1.png'
 import secondFather from './assets/images/father-2.png'
 import mother from './assets/images/mother-1.png'
+import Alpine from 'alpinejs'
+import collapse from '@alpinejs/collapse'
+
+Alpine.plugin(collapse)
+Alpine.start()
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <!-- header -->
