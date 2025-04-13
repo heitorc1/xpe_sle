@@ -388,7 +388,27 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         { label: 'Rio de Janeiro', value: 7, href: 'https://wa.me/5521993194178?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20me%20matricular%20no%20Col%C3%A9gio%20Logos%C3%B3fico' },
         { label: 'Uberlândia', value: 8, href: 'https://wa.me/5534997811130?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20me%20matricular%20no%20Col%C3%A9gio%20Logos%C3%B3fico' },
       ],
-      placeholder: 'Selecione sua unidade'
+      placeholder: 'Selecione sua unidade',
+      showError: false,
+      handleMatriculaClick() {
+        if (!this.selectedOption) {
+          this.showError = true;
+          return false;
+        }
+
+        this.showError = false; // Reset error if valid selection
+
+        // Track the event
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          'event': 'matricula_click',
+          'selected_unit': this.selectedOption.label
+        });
+
+        // Redirect
+        window.open(this.selectedOption.href, '_blank');
+        return false;
+      }
     }">
     <div class="flex flex-col text-center w-full mb-12">
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
@@ -456,10 +476,17 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </div>
       </div>
 
-      <a id="apply-button" :href="selectedOption?.href" target="_blank" @click="window.dataLayer = window.dataLayer || []; dataLayer.push({'event': 'matricula_click', 'selected_unit': selectedOption?.label});"
-        class="w-fit mt-4 text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg cursor-pointer">
+      <button id="apply-button" @click="handleMatriculaClick()"
+        :class="{
+          'w-fit mt-4 text-white border-0 py-2 px-8 focus:outline-none rounded text-lg cursor-pointer': true,
+          'bg-blue-500 hover:bg-blue-600': selectedOption,
+          'bg-gray-400 cursor-not-allowed': !selectedOption
+        }">
         Avançar para a Matrícula  
-      </a>
+      </button>
+      <p x-show="showError && !selectedOption" class="text-red-500 text-sm mt-1">
+        Por favor, selecione uma unidade
+      </p>
     </div>
   </div>
 </section>
