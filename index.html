@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://https://xpe-sle.vercel.app">
   <meta property="og:type" content="website">
   <meta charset="UTF-8" />
-  <link rel="preload" href="src/style.css" rel="stylesheet" />
+  <link rel="preload" href="src/style.css" rel="stylesheet" as="style" />
   <link rel="preload" href="src/assets/images/hero.webp" as="image">
   <link rel="preload" href="src/assets/images/logo_sle.webp" as="image">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -50,6 +50,12 @@
   <div id="app">
   </div>
   <script type="module" src="/src/main.ts"></script>
+
+  <script>
+    function scrollToElement() {
+      document.getElementById('cta').scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
 </body>
 
 </html>
