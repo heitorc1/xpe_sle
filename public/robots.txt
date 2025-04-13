@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xpe-sle.vercel.app/sitemap.xml

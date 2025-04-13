@@ -1,12 +1,12 @@
 import './style.css'
-import logo from './assets/images/logo_sle.png'
-import hero from './assets/images/hero.jpg'
-import childStudying from './assets/images/child-1.jpg'
-import childHeadphone from './assets/images/child-2.jpg'
-import teens from './assets/images/teens-1.jpg'
-import firstFather from './assets/images/father-1.png'
-import secondFather from './assets/images/father-2.png'
-import mother from './assets/images/mother-1.png'
+import logo from './assets/images/logo_sle.webp'
+import hero from './assets/images/hero.webp'
+import childStudying from './assets/images/child-1.webp'
+import childHeadphone from './assets/images/child-2.webp'
+import teens from './assets/images/teens-1.webp'
+import firstFather from './assets/images/father-1.webp'
+import secondFather from './assets/images/father-2.webp'
+import mother from './assets/images/mother-1.webp'
 import Alpine from 'alpinejs'
 import collapse from '@alpinejs/collapse'
 
@@ -18,7 +18,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <header class="text-gray-600 body-font">
   <div class="container mx-auto flex flex-wrap p-5 flex-col justify-between md:flex-row items-center">
     <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-      <img src="${logo}" alt="logo" class="w-full md:w-32" />
+      <img src="${logo}" alt="sle logo" class="w-full md:w-32" />
     </a>
 
     <a href="#cta"
@@ -35,7 +35,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 <section class="text-gray-600 body-font">
   <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-    <img class="mb-10 object-cover object-center rounded" alt="hero"
+    <img class="mb-10 object-cover object-center rounded" alt="hero image"
       src="${hero}">
     <div class="text-center lg:w-2/3 w-full">
       <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
@@ -67,16 +67,16 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <div class="flex items-center -mx-3 sm:-mx-4">
           <div class="w-full px-3 sm:px-4 xl:w-1/2">
             <div class="py-3 sm:py-4">
-              <img src="${childHeadphone}" alt="" class="w-full rounded-2xl" />
+              <img loading="lazy" src="${childHeadphone}" alt="child studying with headphone" class="w-full rounded-2xl" />
             </div>
             <div class="py-3 sm:py-4">
-              <img src="${teens}" alt=""
+              <img loading="lazy" src="${teens}" alt="teens smiling"
                 class="w-full rounded-2xl" />
             </div>
           </div>
           <div class="w-full px-3 sm:px-4 xl:w-1/2">
             <div class="relative z-10 my-4">
-              <img src="${childStudying}" alt=""
+              <img loading="lazy" src="${childStudying}" alt="child studying"
                 class="w-full rounded-2xl" />
               <span class="absolute -right-7 -bottom-7 z-[-1]">
                 <svg width="134" height="106" viewBox="0 0 134 106" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -324,7 +324,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="flex flex-wrap -m-4">
       <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
         <div class="h-full text-center">
-          <img alt="testimonial"
+          <img loading="lazy" alt="female person"
             class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
             src="${mother}">
           <p class="leading-relaxed">
@@ -339,7 +339,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </div>
       <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
         <div class="h-full text-center">
-          <img alt="testimonial"
+          <img loading="lazy" alt="male person"
             class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
             src="${firstFather}">
             <p class="leading-relaxed">
@@ -354,7 +354,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </div>
       <div class="lg:w-1/3 lg:mb-0 p-4">
         <div class="h-full text-center">
-          <img alt="testimonial"
+          <img loading="lazy" alt="male person"
             class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
             src="${secondFather}">
           <p class="leading-relaxed">
