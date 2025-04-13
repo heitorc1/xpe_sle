@@ -456,7 +456,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </div>
       </div>
 
-      <a :href="selectedOption?.href" target="_blank"
+      <a id="apply-button" :href="selectedOption?.href" target="_blank" @click="window.dataLayer = window.dataLayer || []; dataLayer.push({'event': 'matricula_click', 'selected_unit': selectedOption?.label});"
         class="w-fit mt-4 text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg cursor-pointer">
         Avançar para a Matrícula  
       </a>
